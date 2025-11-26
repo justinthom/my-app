@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calm Corner - Anxiety Relief Games</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌸 Calm Corner 🌸</h1>
+            <p class="tagline">Take a break and find your peace</p>
+        </header>
+
+        <nav class="game-selector">
+            <button class="game-btn active" data-game="breathing">Breathing</button>
+            <button class="game-btn" data-game="bubbles">Pop Bubbles</button>
+            <button class="game-btn" data-game="colors">Color Match</button>
+            <button class="game-btn" data-game="draw">Drawing Pad</button>
+        </nav>
+
+        <!-- Breathing Exercise Game -->
+        <div class="game-container active" id="breathing">
+            <h2>Guided Breathing Exercise</h2>
+            <p class="instructions">Follow the circle's rhythm to calm your mind</p>
+            <div class="breathing-circle">
+                <div class="breath-text">Breathe In</div>
+            </div>
+            <div class="breathing-controls">
+                <button id="start-breathing" class="start-btn">Start</button>
+                <button id="stop-breathing" class="stop-btn" style="display:none;">Stop</button>
+            </div>
+            <div class="breathing-stats">
+                <p>Cycles completed: <span id="breath-count">0</span></p>
+            </div>
+        </div>
+
+        <!-- Bubble Pop Game -->
+        <div class="game-container" id="bubbles">
+            <h2>Bubble Pop</h2>
+            <p class="instructions">Click or tap the bubbles to pop them</p>
+            <div class="stats">
+                <p>Bubbles popped: <span id="bubble-count">0</span></p>
+            </div>
+            <div class="bubble-area"></div>
+            <button id="reset-bubbles" class="reset-btn">Reset</button>
+        </div>
+
+        <!-- Color Matching Game -->
+        <div class="game-container" id="colors">
+            <h2>Calming Colors</h2>
+            <p class="instructions">Match the colors to create peaceful patterns</p>
+            <div class="color-grid"></div>
+            <div class="color-palette">
+                <div class="color-option" data-color="#FFB6C1" style="background-color: #FFB6C1;"></div>
+                <div class="color-option" data-color="#B0E0E6" style="background-color: #B0E0E6;"></div>
+                <div class="color-option" data-color="#DDA0DD" style="background-color: #DDA0DD;"></div>
+                <div class="color-option" data-color="#F0E68C" style="background-color: #F0E68C;"></div>
+                <div class="color-option" data-color="#98FB98" style="background-color: #98FB98;"></div>
+                <div class="color-option" data-color="#FFDAB9" style="background-color: #FFDAB9;"></div>
+            </div>
+            <button id="clear-colors" class="reset-btn">Clear Grid</button>
+        </div>
+
+        <!-- Drawing Pad -->
+        <div class="game-container" id="draw">
+            <h2>Mindful Drawing</h2>
+            <p class="instructions">Draw freely to express yourself</p>
+            <div class="drawing-tools">
+                <input type="color" id="brush-color" value="#6B5B95">
+                <input type="range" id="brush-size" min="1" max="20" value="5">
+                <span>Brush Size: <span id="size-display">5</span>px</span>
+                <button id="clear-canvas" class="reset-btn">Clear</button>
+            </div>
+            <canvas id="drawing-canvas" width="600" height="400"></canvas>
+        </div>
+
+        <footer>
+            <p>💙 Remember: It's okay to take breaks. You're doing great. 💙</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
