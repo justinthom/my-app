@@ -20,15 +20,24 @@ document.querySelectorAll('.game-btn').forEach(btn => {
 let breathingInterval;
 let breathCount = 0;
 let isBreathing = false;
+const MAX_BREATH_CYCLES = 6;
 
 const breathingCircle = document.querySelector('.breathing-circle');
 const breathText = document.querySelector('.breath-text');
 const startBreathingBtn = document.getElementById('start-breathing');
 const stopBreathingBtn = document.getElementById('stop-breathing');
 const breathCountDisplay = document.getElementById('breath-count');
+const breathProgressBar = document.getElementById('breath-progress');
+const completionMessage = document.getElementById('completion-message');
 
 function startBreathing() {
     if (isBreathing) return;
+
+    // Reset if starting a new session
+    breathCount = 0;
+    breathCountDisplay.textContent = breathCount;
+    breathProgressBar.style.width = '0%';
+    completionMessage.style.display = 'none';
 
     isBreathing = true;
     startBreathingBtn.style.display = 'none';
@@ -37,8 +46,19 @@ function startBreathing() {
     breathingCycle();
 }
 
+function updateProgress() {
+    const progress = (breathCount / MAX_BREATH_CYCLES) * 100;
+    breathProgressBar.style.width = progress + '%';
+}
+
 function breathingCycle() {
     if (!isBreathing) return;
+
+    // Check if we've completed all cycles
+    if (breathCount >= MAX_BREATH_CYCLES) {
+        completeBreathingSession();
+        return;
+    }
 
     // Inhale phase (4 seconds)
     breathText.textContent = 'Breathe In';
@@ -65,12 +85,27 @@ function breathingCycle() {
                 // Complete cycle
                 breathCount++;
                 breathCountDisplay.textContent = breathCount;
+                updateProgress();
 
                 // Start next cycle
                 breathingCycle();
             }, 4000);
         }, 2000);
     }, 4000);
+}
+
+function completeBreathingSession() {
+    isBreathing = false;
+    breathingCircle.classList.remove('inhale', 'exhale');
+    breathText.textContent = 'Complete!';
+    stopBreathingBtn.style.display = 'none';
+    startBreathingBtn.style.display = 'inline-block';
+    completionMessage.style.display = 'block';
+
+    // Reset the text after a moment
+    setTimeout(() => {
+        breathText.textContent = 'Breathe In';
+    }, 2000);
 }
 
 function stopBreathing() {

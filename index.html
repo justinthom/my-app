@@ -32,8 +32,12 @@
                 <button id="stop-breathing" class="stop-btn" style="display:none;">Stop</button>
             </div>
             <div class="breathing-stats">
-                <p>Cycles completed: <span id="breath-count">0</span></p>
+                <p>Cycles completed: <span id="breath-count">0</span> / 6</p>
             </div>
+            <div class="progress-container">
+                <div class="progress-bar" id="breath-progress"></div>
+            </div>
+            <p class="completion-message" id="completion-message" style="display: none;">Well done! You've completed your breathing session.</p>
         </div>
 
         <!-- Bubble Pop Game -->
