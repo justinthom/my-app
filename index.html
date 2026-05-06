@@ -3,88 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calm Corner - Anxiety Relief Games</title>
+    <title>Calm Corner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>🌸 Calm Corner 🌸</h1>
-            <p class="tagline">Take a break and find your peace</p>
-        </header>
+    <div class="app">
 
-        <nav class="game-selector">
-            <button class="game-btn active" data-game="breathing">Breathing</button>
-            <button class="game-btn" data-game="bubbles">Pop Bubbles</button>
-            <button class="game-btn" data-game="colors">Color Match</button>
-            <button class="game-btn" data-game="draw">Drawing Pad</button>
-        </nav>
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <span class="logo-icon">✦</span>
+                <span class="logo-text">Calm Corner</span>
+            </div>
+            <nav class="nav">
+                <button class="nav-btn active" data-game="breathing">
+                    <span class="nav-icon">◎</span>
+                    <span class="nav-label">Breathing</span>
+                </button>
+                <button class="nav-btn" data-game="bubbles">
+                    <span class="nav-icon">⬤</span>
+                    <span class="nav-label">Bubbles</span>
+                </button>
+                <button class="nav-btn" data-game="colors">
+                    <span class="nav-icon">⊞</span>
+                    <span class="nav-label">Color Grid</span>
+                </button>
+                <button class="nav-btn" data-game="draw">
+                    <span class="nav-icon">✎</span>
+                    <span class="nav-label">Drawing</span>
+                </button>
+            </nav>
+            <div class="sidebar-footer">
+                <p>Take a breath.<br>You've got this.</p>
+            </div>
+        </aside>
 
-        <!-- Breathing Exercise Game -->
-        <div class="game-container active" id="breathing">
-            <h2>Guided Breathing Exercise</h2>
-            <p class="instructions">Follow the circle's rhythm to calm your mind</p>
-            <div class="breathing-circle">
-                <div class="breath-text">Breathe In</div>
-            </div>
-            <div class="breathing-controls">
-                <button id="start-breathing" class="start-btn">Start</button>
-                <button id="stop-breathing" class="stop-btn" style="display:none;">Stop</button>
-            </div>
-            <div class="breathing-stats">
-                <p>Cycles completed: <span id="breath-count">0</span> / 6</p>
-            </div>
-            <div class="progress-container">
-                <div class="progress-bar" id="breath-progress"></div>
-            </div>
-            <p class="completion-message" id="completion-message" style="display: none;">Well done! You've completed your breathing session.</p>
-        </div>
+        <!-- Main content -->
+        <main class="main">
 
-        <!-- Bubble Pop Game -->
-        <div class="game-container" id="bubbles">
-            <h2>Bubble Pop</h2>
-            <p class="instructions">Click or tap the bubbles to pop them</p>
-            <div class="stats">
-                <p>Bubbles popped: <span id="bubble-count">0</span></p>
-            </div>
-            <div class="bubble-area"></div>
-            <button id="reset-bubbles" class="reset-btn">Reset</button>
-        </div>
+            <!-- Breathing -->
+            <section class="game-panel active" id="breathing">
+                <div class="panel-header">
+                    <h2>Guided Breathing</h2>
+                    <p>Follow the orb — breathe in as it expands, out as it shrinks</p>
+                </div>
+                <div class="breathing-scene">
+                    <div class="orb-wrapper">
+                        <div class="orb-ring r3"></div>
+                        <div class="orb-ring r2"></div>
+                        <div class="orb-ring r1"></div>
+                        <div class="breathing-orb">
+                            <span class="phase-label">Ready</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="breathing-info">
+                    <div class="cycle-counter">
+                        <span class="cycle-num" id="breath-count">0</span>
+                        <span class="cycle-text">/ 6 cycles</span>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-fill" id="breath-progress"></div>
+                    </div>
+                    <div class="breath-controls">
+                        <button id="start-breathing" class="btn-primary">Start Session</button>
+                        <button id="stop-breathing" class="btn-ghost" style="display:none">Stop</button>
+                    </div>
+                    <p class="completion-msg" id="completion-message" style="display:none">✦ Session complete — well done.</p>
+                </div>
+            </section>
 
-        <!-- Color Matching Game -->
-        <div class="game-container" id="colors">
-            <h2>Calming Colors</h2>
-            <p class="instructions">Match the colors to create peaceful patterns</p>
-            <div class="color-grid"></div>
-            <div class="color-palette">
-                <div class="color-option" data-color="#FFB6C1" style="background-color: #FFB6C1;"></div>
-                <div class="color-option" data-color="#B0E0E6" style="background-color: #B0E0E6;"></div>
-                <div class="color-option" data-color="#DDA0DD" style="background-color: #DDA0DD;"></div>
-                <div class="color-option" data-color="#F0E68C" style="background-color: #F0E68C;"></div>
-                <div class="color-option" data-color="#98FB98" style="background-color: #98FB98;"></div>
-                <div class="color-option" data-color="#FFDAB9" style="background-color: #FFDAB9;"></div>
-            </div>
-            <button id="clear-colors" class="reset-btn">Clear Grid</button>
-        </div>
+            <!-- Bubbles -->
+            <section class="game-panel" id="bubbles">
+                <div class="panel-header">
+                    <h2>Bubble Pop</h2>
+                    <p>Tap the bubbles as they drift upward</p>
+                </div>
+                <div class="bubble-hud">
+                    <div class="hud-stat">
+                        <span class="hud-num" id="bubble-count">0</span>
+                        <span class="hud-label">popped</span>
+                    </div>
+                    <button id="reset-bubbles" class="btn-ghost-sm">Reset</button>
+                </div>
+                <div class="bubble-area" id="bubble-area"></div>
+            </section>
 
-        <!-- Drawing Pad -->
-        <div class="game-container" id="draw">
-            <h2>Mindful Drawing</h2>
-            <p class="instructions">Draw freely to express yourself</p>
-            <div class="drawing-tools">
-                <input type="color" id="brush-color" value="#6B5B95">
-                <input type="range" id="brush-size" min="1" max="20" value="5">
-                <span>Brush Size: <span id="size-display">5</span>px</span>
-                <button id="clear-canvas" class="reset-btn">Clear</button>
-            </div>
-            <canvas id="drawing-canvas" width="600" height="400"></canvas>
-        </div>
+            <!-- Color Grid -->
+            <section class="game-panel" id="colors">
+                <div class="panel-header">
+                    <h2>Color Canvas</h2>
+                    <p>Pick a color and paint — click and drag to fill</p>
+                </div>
+                <div class="color-toolbar">
+                    <div class="color-palette" id="color-palette"></div>
+                    <button id="clear-colors" class="btn-ghost-sm">Clear</button>
+                </div>
+                <div class="color-grid" id="color-grid"></div>
+            </section>
 
-        <footer>
-            <p>💙 Remember: It's okay to take breaks. You're doing great. 💙</p>
-        </footer>
+            <!-- Drawing -->
+            <section class="game-panel" id="draw">
+                <div class="panel-header">
+                    <h2>Mindful Drawing</h2>
+                    <p>Draw freely — no rules, just flow</p>
+                </div>
+                <div class="drawing-toolbar">
+                    <label class="tool-item">
+                        <span class="tool-label">Color</span>
+                        <input type="color" id="brush-color" value="#7c6af5">
+                    </label>
+                    <label class="tool-item">
+                        <span class="tool-label">Size <span id="size-display">8</span>px</span>
+                        <input type="range" id="brush-size" min="1" max="40" value="8">
+                    </label>
+                    <div class="tool-divider"></div>
+                    <button id="eraser-btn" class="btn-ghost-sm">Eraser</button>
+                    <button id="clear-canvas" class="btn-ghost-sm">Clear</button>
+                    <button id="save-canvas" class="btn-primary-sm">Save ↓</button>
+                </div>
+                <canvas id="drawing-canvas"></canvas>
+            </section>
+
+        </main>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
